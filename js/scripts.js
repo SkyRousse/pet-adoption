@@ -18,7 +18,7 @@ function updateGallery() {
   var totalHTMLtoAdd = "";
   for (i = 0; i < petDatabase.length; i++) {
     if (($('#tabs li.active').text() === "Already Adopted") && (petDatabase[i].adopted === true)) {
-      htmlToAdd += '<div class="col-md-4">';
+      htmlToAdd += '<div class="col-xs-6 col-sm-4 col-lg-3 gallery">';
       htmlToAdd += '<h3>' + petDatabase[i].name + '</h3>';
       htmlToAdd += '<img class="img-responsive img-thumbnail" src="' + petDatabase[i].profilePic + '" alt="picture of ' + petDatabase[i].name + '">';
       htmlToAdd += '<button data-toggle="modal" data-target="#moreInfo" class="btn moreInfo" id="' + petDatabase[i].id + '">More Info</button>';
@@ -27,7 +27,7 @@ function updateGallery() {
       totalHTMLtoAdd += htmlToAdd;
       var htmlToAdd = "";
     } else if (($('#tabs li.active').text() === "Available Animals") && (petDatabase[i].adopted === false)) {
-      htmlToAdd += '<div class="col-md-4">';
+      htmlToAdd += '<div class="col-xs-6 col-sm-4 col-lg-3 gallery">';
       htmlToAdd += '<h3>' + petDatabase[i].name + '</h3>';
       htmlToAdd += '<img class="img-responsive img-thumbnail" src="' + petDatabase[i].profilePic + '" alt="picture of ' + petDatabase[i].name + '">';
       htmlToAdd += '<button data-toggle="modal" data-target="#moreInfo" class="btn moreInfo" id="' + petDatabase[i].id + '">More Info</button>';
@@ -38,9 +38,9 @@ function updateGallery() {
     }
   }
   if ($('#tabs li.active').text() === "Available Animals") {
-    $('#galleryAvailable').html(totalHTMLtoAdd);
+    $('#galleryAvailable div').html(totalHTMLtoAdd);
   } else if ($('#tabs li.active').text() === "Already Adopted") {
-    $('#galleryAdopted').html(totalHTMLtoAdd);
+    $('#galleryAdopted div').html(totalHTMLtoAdd);
   }
 }
 
@@ -88,6 +88,7 @@ $(document).ready(function() {
     $('#moreInfoContent h5:EQ(1)').text(petDatabase[ID-1].age);
     $('#moreInfoContent p:EQ(0)').text(petDatabase[ID-1].description);
     $('#moreInfoContent p:EQ(1)').text(petDatabase[ID-1].medical);
+    $('#infoAdopt button').attr('id', petDatabase[ID-1].id);
   });
 
   $('body').on("click", '#tabs li:EQ(0)', function() {
