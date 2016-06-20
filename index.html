@@ -31,15 +31,48 @@
   <body>
     <div class="container">
       <header>
-        <h1>Epicodus Project Template</h1>
+        <h1>Adopt an Animal</h1>
       </header>
-      <h2>Hello World!</h2>
-      <p>
-        This is a nice little index file.  It calls in five different files to support Bootstrap, JQuery, and your custom css and js.
-      </p>
-      <footer>
-        <p>&copy; 2016 Epicodus Pair Project, Inc.</p>
-      </footer>
-    </div> <!-- end container -->
+      <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#galleryAvailable" data-toggle="tab">Available Animals</a></li>
+          <li><a href="#galleryAdopted" data-toggle="tab">Already Adopted</a></li>
+          <li><a href="#addPet" data-toggle="tab">Add New Animal</a></li>
+        </ul>
+         <div class="row">
+           <div class="tab-content">
+             <div class='tab-pane' id='addPet'>
+              <div class='col-md-9 main'>
+                <h2>Main Content Section</h2>
+                <p>Lorem e nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+                <div class="col-md-3">
+                  <h3>Name</h3>
+                  <img class='img-responsive' src="img/medium-square-400-400.jpg"/>
+                </div>
+                <div class="col-md-3">
+                  <h3>Name</h3>
+                  <img class='img-responsive' src="img/medium-square-400-400.jpg"/>
+                </div>
+                <div class="col-md-3">
+                  <h3>Name</h3>
+                  <img class='img-responsive' src="img/medium-square-400-400.jpg"/>
+                </div>
+                <div class="col-md-3">
+                  <h3>Name</h3>
+                  <img class='img-responsive' src="img/medium-square-400-400.jpg"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='col-md-3 sidebar'>
+            <h3>Right Sidebar</h3>
+            <ul class="nav nav-tabs nav-stacked">
+              <li>Inspirational Quote</li>
+              <li>Mission Statement</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
