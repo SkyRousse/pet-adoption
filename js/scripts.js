@@ -11,13 +11,42 @@ function Pet(name, type, age, description, medical, profilePic) {
   this.profilePic = profilePic;
 }
 
-function updateGallery(available) {
-  if ($('#tabs li.active').text() === "Already Adopted") {
-    
-  } else if ($('#tabs li.active').text() === "Available Animals") {
-
+function updateGallery() {
+  $('#galleryAdopted div, #galleryAvailable div').empty();
+  var htmlToAdd = "";
+  for (i = 0; i < petDatabase.length; i++) {
+    if (($('#tabs li.active').text() === "Already Adopted") && (petDatabase[i].adopted === true)) {
+      htmlToAdd += '<div class="col-md-3">';
+      htmlToAdd += '<h3>' + petDatabase[i].name + '</h3>';
+      htmlToAdd += '<img class="img-responsive img-thumbnail" src="' + petDatabase[i].profilePic + '" alt="picture of ' + petDatabase[i].name + '">';
+      htmlToAdd += '<button class="btn moreInfo" id="' + petDatabase[i].id + '">More Info</button>';
+      htmlToAdd += '<button class="btn adopt" id="' + petDatabase[i].id + '">Adopt</button>)';
+      htmlToAdd += '</div>';
+      $('#galleryAdopted').append(htmlToAdd);
+      alert("if");
+    } else if (($('#tabs li.active').text() === "Available Animals") && (petDatabase[i].adopted === false)) {
+      htmlToAdd += '<div class="col-md-3">';
+      htmlToAdd += '<h3>' + petDatabase[i].name + '</h3>';
+      htmlToAdd += '<img src="' + petDatabase[i].profilePic + '" alt="picture of ' + petDatabase[i].name + '">';
+      htmlToAdd += '<button class="btn moreInfo" id="' + petDatabase[i].id + '">More Info</button>';
+      htmlToAdd += '<button class="btn adopt" id="' + petDatabase[i].id + '">Adopt</button>';
+      htmlToAdd += '</div>';
+      $('#galleryAvailable').append(htmlToAdd);
+      alert('else');
+    }
+    alert('end of loop');
   }
 }
+
+//// add initial pets to database
+var ronnie = new Pet("Ronald", "clown", 59, "He's a cute little clown looking for a new home", "clean bill of health, may need dental cleaning in three weeks", "http://extremelifechanger.com/web_images/rtr1b1zd.jpg");
+petDatabase.push(ronnie);
+var simba = new Pet("Simba", "cat", 21, "Does not get along well with cats named 'Scar'", "suffers from delusions of grandeur, claims to be 'king'", "https://pbs.twimg.com/profile_images/1630225663/avatar_simba_400x400.png");
+petDatabase.push(simba);
+var nala = new Pet("Nala", "cat", 21, "recently divorced cat", "pretty depressed right now, needs hugs", "http://vignette1.wikia.nocookie.net/lionking/images/c/c6/Happynala.png/revision/latest?cb=20131119194346");
+petDatabase.push(nala);
+var cujo = new Pet("Cujo", "dog", 34, "Cujo is a lovable puppy who enjoys children....", "not enough room to list here, inquire at facility", "https://pbs.twimg.com/profile_images/451581570093047808/XiDQmZ26_400x400.jpeg");
+petDatabase.push(cujo);
 
 $(document).ready(function() {
 
@@ -34,21 +63,29 @@ $(document).ready(function() {
     petDatabase.push(newPet);
   });
 
-  $('.adopt').click(function() {
+  $('body').on("click", '.adopt', function() {
     var ID = this.id;
     petDatabase[ID-1].adopted = true;
-    updateGallery(true);
+    updateGallery();
   });
 
-  $('.moreInfo').click(function() {
+  $('body').on("click", '.moreInfo', function() {
     var ID = this.id;
     $('#moreInfo h3').text(petDatabase[ID-1].name);
-    $('#moreInfo div').html('<img src="' + petDatabase[ID-1].profilePic + '" alt="picture of ' + petDatabase[ID-1].name + '"');
+    $('#moreInfo div').html('<img src="' + petDatabase[ID-1].profilePic + '" alt="picture of ' + petDatabase[ID-1].name + '">');
     $('#moreInfo h5:EQ(0)').text(petDatabase[ID-1].type);
     $('#moreInfo h5:EQ(1)').text(petDatabase[ID-1].age);
     $('#moreInfo p:EQ(0)').text(petDatabase[ID-1].description);
     $('#moreInfo p:EQ(1)').text(petDatabase[ID-1].medical);
-    updateGallery(true);
+  });
+
+  $('body').on("click", '#tabs li:EQ(0), #tabs li:EQ(1)', function() {
+    updateGallery();
+    // $('.adopt').click(function() {
+    //   var ID = this.id;
+    //   petDatabase[ID-1].adopted = true;
+    //   updateGallery();
+    // });
   });
 
 });
