@@ -1,4 +1,5 @@
 var petDatabase = [];
+var availableFlag;
 
 function Pet(name, type, age, description, medical, profilePic) {
   this.name = name;
@@ -17,16 +18,15 @@ function updateGallery() {
   var htmlToAdd = "";
   var totalHTMLtoAdd = "";
   for (i = 0; i < petDatabase.length; i++) {
-    if (($('#tabs li.active').text() === "Already Adopted") && (petDatabase[i].adopted === true)) {
+    if (!availableFlag && (petDatabase[i].adopted === true)) {
       htmlToAdd += '<div class="col-xs-6 col-sm-4 col-lg-3 gallery">';
       htmlToAdd += '<h3>' + petDatabase[i].name + '</h3>';
       htmlToAdd += '<img class="img-responsive img-thumbnail" src="' + petDatabase[i].profilePic + '" alt="picture of ' + petDatabase[i].name + '">';
       htmlToAdd += '<button data-toggle="modal" data-target="#moreInfo" class="btn moreInfo" id="' + petDatabase[i].id + '">More Info</button>';
-      htmlToAdd += '<button class="btn adopt" id="' + petDatabase[i].id + '">Adopt</button>';
       htmlToAdd += '</div>';
       totalHTMLtoAdd += htmlToAdd;
       var htmlToAdd = "";
-    } else if (($('#tabs li.active').text() === "Available Animals") && (petDatabase[i].adopted === false)) {
+    } else if (availableFlag && (petDatabase[i].adopted === false)) {
       htmlToAdd += '<div class="col-xs-6 col-sm-4 col-lg-3 gallery">';
       htmlToAdd += '<h3>' + petDatabase[i].name + '</h3>';
       htmlToAdd += '<img class="img-responsive img-thumbnail" src="' + petDatabase[i].profilePic + '" alt="picture of ' + petDatabase[i].name + '">';
@@ -42,6 +42,7 @@ function updateGallery() {
   } else if ($('#tabs li.active').text() === "Already Adopted") {
     $('#galleryAdopted div').html(totalHTMLtoAdd);
   }
+
 }
 
 //// add initial pets to database
@@ -89,13 +90,20 @@ $(document).ready(function() {
     $('#moreInfoContent p:EQ(0)').text(petDatabase[ID-1].description);
     $('#moreInfoContent p:EQ(1)').text(petDatabase[ID-1].medical);
     $('#infoAdopt button').attr('id', petDatabase[ID-1].id);
+    if (petDatabase[ID-1].adopted) {
+      $('#infoAdopt button').addClass('hidden');
+    } else {
+      $('#infoAdopt button').removeClass('hidden');
+    }
   });
 
   $('body').on("click", '#tabs li:EQ(0)', function() {
+    availableFlag = true;
     updateGallery();
   });
 
   $('body').on("click", '#tabs li:EQ(1)', function() {
+    availableFlag = false;
     updateGallery();
   });
 
