@@ -10,3 +10,16 @@ function Pet(name, type, age, description, medical, profilePic) {
   this.medical = medical;
   this.profilePic = profilePic;
 }
+
+$('#addPet').submit(function(event) {
+  event.preventDefault();
+  var newPet = new Pet(
+    $('#name').val(),
+    $('#type').val(),
+    $('#age').val(),
+    $('#description').val(),
+    $('#medical').val(),
+    $('#profilePic').val()
+  );
+  petDatabase.push(newPet);
+});
