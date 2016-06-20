@@ -13,14 +13,17 @@ function Pet(name, type, age, description, medical, profilePic) {
 
 function updateGallery(available) {
   if ($('#tabs li.active').text() === "Already Adopted") {
-    
+
   } else if ($('#tabs li.active').text() === "Available Animals") {
 
   }
 }
 
-$(document).ready(function() {
 
+
+
+
+$(document).ready(function() {
   $('#addPetForm').submit(function(event) {
     event.preventDefault();
     var newPet = new Pet(
