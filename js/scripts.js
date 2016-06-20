@@ -30,9 +30,20 @@ $(document).ready(function() {
     petDatabase.push(newPet);
   });
 
-  $('.hello').click(function() {
+  $('.adopt').click(function() {
     var ID = this.id;
     petDatabase[ID-1].adopted = true;
+    updateGallery(true);
+  });
+
+  $('.moreInfo').click(function() {
+    var ID = this.id;
+    $('#moreInfo h3').text(petDatabase[ID-1].name);
+    $('#moreInfo div').html('<img src="' + petDatabase[ID-1].profilePic + '" alt="picture of ' + petDatabase[ID-1].name + '"');
+    $('#moreInfo h5:EQ(0)').text(petDatabase[ID-1].type);
+    $('#moreInfo h5:EQ(1)').text(petDatabase[ID-1].age);
+    $('#moreInfo p:EQ(0)').text(petDatabase[ID-1].description);
+    $('#moreInfo p:EQ(1)').text(petDatabase[ID-1].medical);
     updateGallery(true);
   });
 
