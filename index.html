@@ -43,24 +43,35 @@
            <div class="tab-content">
              <div class='tab-pane' id='addPet'>
               <div class='col-md-9 main'>
-                <h2>Main Content Section</h2>
+                <h2>Input Form</h2>
                 <p>Lorem e nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-                <div class="col-md-3">
-                  <h3>Name</h3>
-                  <img class='img-responsive' src="img/medium-square-400-400.jpg"/>
-                </div>
-                <div class="col-md-3">
-                  <h3>Name</h3>
-                  <img class='img-responsive' src="img/medium-square-400-400.jpg"/>
-                </div>
-                <div class="col-md-3">
-                  <h3>Name</h3>
-                  <img class='img-responsive' src="img/medium-square-400-400.jpg"/>
-                </div>
-                <div class="col-md-3">
-                  <h3>Name</h3>
-                  <img class='img-responsive' src="img/medium-square-400-400.jpg"/>
-                </div>
+                <form id='addPetForm'>
+                  <div class='form-group'>
+                    <label for="name">Enter the animal's name</label>
+                    <input type="text" id='name' class="form-control">
+                  </div>
+                  <div class='form-group'>
+                    <label for="type">Enter the animal species</label>
+                    <input type="text" id='type' class="form-control">
+                  </div>
+                  <div class='form-group'>
+                    <label for="age">Enter the animal's age</label>
+                    <input type="text" id='age' class="form-control">
+                  </div>
+                  <div class='form-group'>
+                    <label for="description">Enter the animal's description</label>
+                    <input type="text" id='description' class="form-control">
+                  </div>
+                  <div class='form-group'>
+                    <label for="medical">Enter the animal's medical information</label>
+                    <input type="text" id='medical' class="form-control">
+                  </div>
+                  <div class='form-group'>
+                    <label for="profilePic">Enter the URL of the image</label>
+                    <input type="text" id='profilePic' class="form-control">
+                  </div>
+                  <button type="submit" class='btn btn-primary'>Submit Animal Information</button>
+                </form>
               </div>
             </div>
             <div class='tab-pane active' id='galleryAvailable'>
