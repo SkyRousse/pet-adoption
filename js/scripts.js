@@ -60,6 +60,7 @@ petDatabase.push(cujo);
 
 
 $(document).ready(function() {
+
   $('#addPetForm').submit(function(event) {
     event.preventDefault();
     var newPet = new Pet(
